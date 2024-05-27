@@ -17,5 +17,6 @@ Currently, my tech stack includes:
 - Angular, Material, HTML, and CSS for the front-end.
 - Flask, Python, and OpenAI for the backend.
 - MongoDB for the database.
+- BeautifulSoup for the scraper.
 
 Thank you for reading!
