@@ -11,7 +11,7 @@ Currently, the website only supports schedule building for B.S. Computer Science
 - Add support to create a schedule based on concentrations the user is interested in, i.e Software Engineering, Cybersecurity, etc.
 - Add support for user authentication and login. Students will sign in with their UMass Google Accounts. Users will have information saved in their accounts, such as saved schedules.
 
-# <u></u>
+## <u>Tech Stack</u>
 
 Currently, my tech stack includes:
 - Angular, Material, HTML, and CSS for the front-end.
