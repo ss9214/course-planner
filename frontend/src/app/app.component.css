@@ -7,6 +7,7 @@
     display: flex;
     justify-content: space-between;
     background-color: #940a00;
+    width:100%;
 }
 
 .navbar-button {

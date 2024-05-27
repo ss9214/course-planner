@@ -1,7 +1,7 @@
 <main class="main">
   <mat-toolbar>
-    <mat-toolbar-row class="header">
-      CICS Course Planner
+    <mat-toolbar-row class="header" style="background-color:rgb(54, 10, 10); color:rgb(249, 252, 255)">
+      Undergraduate CICS Course Planner
     </mat-toolbar-row>
     <mat-toolbar-row class="navbar">
       <div class="menu">
@@ -9,9 +9,9 @@
           Home
         </button>
         <button mat-button routerLink="/view-schedule" class="navbar-button">
-          View Schedule
+          View Saved Schedules
         </button>
-        <button mat-button routerLink="/build-schedule" class="navbar-button">
+        <button mat-button routerLink="/schedule" class="navbar-button">
           Build Schedule
         </button>
         <button mat-button routerLink="/courses" class="navbar-button">
@@ -28,4 +28,5 @@
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
+  <router-outlet/>
 </main>

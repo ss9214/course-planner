@@ -1,0 +1,60 @@
+<div style="background-color:rgb(243, 229, 208)">
+    <div style="align-items:center; width:100%; display:flex; flex-direction:column; justify-content: center; padding-bottom:2%;" *ngIf="list_schedule.length>0">
+        <button mat-button class="view-class-info" (click)="addSaved(schedule)" *ngIf="!saved" style="background-color:rgb(221, 215, 202)">
+            Add to saved schedules
+        </button>
+        <button mat-button class="view-class-info" (click)="removeSaved(schedule)" *ngIf="saved" style="background-color:rgb(221, 215, 202)">
+            Remove from saved schedules
+        </button>
+        <button mat-button class="view-class-info" (click)="editSched=true" *ngIf="!editSched" style="background-color:rgb(221, 215, 202)">
+            Edit Schedule
+        </button>
+        <button mat-button class="view-class-info" (click)="editSched=false" *ngIf="editSched" style="background-color:rgb(221, 215, 202)">
+            Stop Editing Schedule
+        </button>
+    </div>
+    <div class="schedule-page" *ngIf="list_schedule.length>0 && !editSched">
+        <div *ngFor="let semester of list_schedule" class="semesters-list">
+            <mat-card class="semester" >
+                <h2>
+                    Semester {{list_schedule.indexOf(semester) + 1}}
+                </h2>
+                <div *ngFor="let course of semester" class="course-list">
+                    <mat-card class="course">
+                        <div style="justify-content: center; padding-top:5%;">
+                            {{course["Course Name"]}}
+                        </div>
+                        <button mat-button class="view-class-info" (click)="viewInfo(course)" routerLink="/class-info" >
+                            View Info
+                        </button>
+                    </mat-card>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <div class="schedule-page" *ngIf="list_schedule.length>0 && editSched">
+        <div *ngFor="let semester of list_schedule" class="semesters-list">
+            <mat-card class="semester" >
+                <h2>
+                    Semester {{list_schedule.indexOf(semester) + 1}}
+                </h2>
+                <div *ngFor="let course of semester;" class="course-list">
+                    <mat-card class="course">
+                        <input mat-input #courseInput style="width:100px; margin-top:15px;" value="{{course['Course Name']}}">
+                        <button mat-button class="view-class-info" (click)="saveCourse(courseInput.value,course)">Save course</button>
+                    </mat-card>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="list_schedule.length==0" style="display: flex; justify-content: center; align-items: center;">
+    <h1 >
+        <u>
+            No Schedule Selected!
+        </u>
+        
+    </h1>
+</div>

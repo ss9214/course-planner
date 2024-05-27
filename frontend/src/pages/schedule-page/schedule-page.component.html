@@ -1,0 +1,101 @@
+<div class="page">
+    <mat-card class="create_schedule_card">
+        <form [formGroup]="createScheduleForm" class="form_content">
+            <h1 style="padding-left:2%;"> <u>Build your Schedule!</u></h1>
+            <div class="row">
+                <mat-label>What major are you?</mat-label>
+                <mat-radio-group  formControlName="major" required>
+                    <!-- <div class="field">
+                        <mat-radio-button value="informatics">B.S. Informatics</mat-radio-button>
+                    </div> -->
+                    <div class="field">
+                        <mat-radio-button value="computer science">B.S. Computer Science</mat-radio-button>
+                    </div>
+                    
+                </mat-radio-group>
+            </div>
+            <div class="row">
+                <mat-label style="padding-right:1%">How many credits do you have?</mat-label>
+                <div class="field" style="padding-left:2%; padding-top:2%">
+                    <input matinput appearance="outline" formControlName="total_credits" placeholder="0" >
+                </div>
+            </div>
+            <div class="row">
+                <mat-label style="padding-right:1%">How many semesters do you have left?</mat-label>
+                <div class="field" style="padding-left:2%; padding-top:2%">
+                    <input matinput appearance="outline" formControlName="semesters_left" placeholder="8" >
+                </div>
+            </div>
+            <div class="row">
+                <mat-label style="padding-right:1%">How many gen-eds have you finished?</mat-label>
+                <div class="field" style="padding-left:2%; padding-top:2%">
+                    <input matinput appearance="outline" formControlName="gen_eds_finished" placeholder="0" >
+                </div>
+            </div>
+            <div class="row">
+                <mat-label style="padding-right:1%">How many Physical Science classes have you finished?</mat-label>
+                <div class="field" style="padding-left:2%; padding-top:2%">
+                    <input matinput appearance="outline" formControlName="physical_sciences_finished" placeholder="8" >
+                </div>
+            </div>
+            <div class="row">
+                <mat-label>Have you finished your Biological Science requirement?</mat-label>
+                <mat-radio-group  formControlName="biological_science_finished">
+                    <div class="field">
+                        <mat-radio-button value="yes">Yes</mat-radio-button>
+                    </div>
+                    <div class="field">
+                        <mat-radio-button value="no">No</mat-radio-button>
+                    </div>
+                </mat-radio-group>
+            </div>
+            <div class="row">
+                <mat-label>Are you in the Commonwealth Honors College?</mat-label>
+                <mat-radio-group  formControlName="honors">
+                    <div class="field">
+                        <mat-radio-button value="yes">Yes</mat-radio-button>
+                    </div>
+                    <div class="field">
+                        <mat-radio-button value="no">No</mat-radio-button>
+                    </div>
+                </mat-radio-group>
+            </div>
+            <div class="row">
+                <mat-label>Do you want to take grad classes?</mat-label>
+                <mat-radio-group  formControlName="grad_classes">
+                    <div class="field">
+                        <mat-radio-button value="yes">Yes</mat-radio-button>
+                    </div>
+                    <div class="field">
+                        <mat-radio-button value="no">No</mat-radio-button>
+                    </div>
+                </mat-radio-group>
+            </div>
+            <div class="row">
+                <mat-label >Choose any concentrations you are interested in:</mat-label>
+            </div>
+            <mat-checkbox formControlName="swe" style="padding-left:3%">Software Engineering</mat-checkbox>
+            <mat-checkbox formControlName="datasci" style="padding-left:3%">Data Science</mat-checkbox>
+            <mat-checkbox formControlName="cybersec" style="padding-left:3%">Cybersecurity</mat-checkbox>
+            <mat-checkbox formControlName="ai_ml" style="padding-left:3%">AI/ML</mat-checkbox>
+            <div class="row">
+                <mat-label style="padding-right:1%">Maximum credits in a semester:</mat-label>
+                <div class="field" style="padding-left:2%; padding-top:2%">
+                    <input matinput formControlName="max_credits" placeholder="19">
+                </div>
+            </div>
+            <div class="row">
+                <mat-label style="padding-right:1%">Minimum credits in a semester: </mat-label>
+                <div class="field" style="padding-left:2%; padding-top:2%">
+                    <input matinput formControlName="min_credits" placeholder="12">
+                </div>
+            </div>
+            <mat-form-field appearance="outline" class="satisfied_courses">
+                <mat-label>Enter satisfied CICS, COMPSCI, and INFO courses</mat-label>
+                <textarea rows="5" matInput placeholder="MUST FOLLOW THIS FORMAT AND ABBREVIATIONS: COMPSCI320, INFO348, COMPSCI198C, CICS210" formControlName="satisfied_courses"></textarea> 
+            </mat-form-field>
+        </form>
+        <button mat-button class="button" (click)="createSchedule()" routerLink="/view-schedule" >Create Schedule</button>
+        <!-- routerLink="/view-schedule" -->
+    </mat-card>
+</div>

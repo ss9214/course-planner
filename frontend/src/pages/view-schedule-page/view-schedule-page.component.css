@@ -1,0 +1,30 @@
+.schedule-page{
+    display:flex;
+    width:100%;
+    justify-content:center;
+    flex-direction:row;
+    justify-self:center;
+}
+
+.course{
+    background-color: rgb(243, 237, 224);
+    height:75px;
+    outline:1px;
+    outline-color:black;
+    width:150px;
+    align-items: center;
+}
+
+.semester{
+    background-color:rgb(221, 215, 202);
+    align-items: center;
+}
+.view-class-info{
+    margin-top:2%;
+    border:1px solid rgb(187, 182, 170)
+}
+.view-class-info:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+    
+}
+

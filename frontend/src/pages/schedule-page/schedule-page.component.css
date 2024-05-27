@@ -1,0 +1,40 @@
+.page{
+    display: flex;
+    justify-content: center;
+    background-color:rgb(221, 215, 202);
+}
+.create_schedule_card{
+    display: flex;
+    flex-direction: column;
+    outline:1px;
+    width:55%;
+    background-color:rgb(243, 237, 224);
+}
+.row{
+    display:block;
+    padding:2%;
+}
+.field{
+    display:block;
+}
+.form_content {
+    display:block;
+    justify-content: space-between;
+    align-items: center;
+    padding:2%;
+}
+
+.satisfied_courses {
+    padding:2%;
+    width:96%;
+}
+
+.button{
+    background-color:#00000098;
+    outline:1%;
+    color:white;
+    justify-content: center;
+    margin-left:3%;
+    margin-right:3%;
+    margin-bottom:3%;
+}

@@ -1,3 +1,93 @@
-<p>
-    Courses Page works!
-</p>
+<div class="course-page">
+    <mat-card class="filter-card">
+        <div class="filter-content">
+            <form [formGroup]="createFilterForm">
+                
+                <div class="submit">
+                    <button mat-button class="button" (click)="onFilter()">
+                        Filter
+                    </button>
+                </div>
+                <input matInput placeholder="Enter a course number" class ="search-bar" formControlName="course_number"> 
+                <input matInput placeholder="Enter a professor" class ="search-bar" formControlName="professor">   
+                <h4 style="margin-left:3%;">
+                    <u>
+                        Course Subject
+                    </u>
+                </h4>
+                <mat-checkbox formControlName="info" class="box"> Informatics </mat-checkbox>
+                <mat-checkbox formControlName="compsci" class="box"> Computer Science </mat-checkbox>
+                <mat-checkbox formControlName="cics" class="box"> CICS </mat-checkbox>
+                <h4 style="margin-left:3%;">
+                    <u>
+                        Course Level
+                    </u>
+                </h4>
+                <mat-checkbox formControlName="one_hundred" class="box"> 100-200 </mat-checkbox>
+                <mat-checkbox formControlName="two_hundred" class="box" > 200-300 </mat-checkbox>
+                <mat-checkbox formControlName="three_hundred" class="box"> 300-400 </mat-checkbox>
+                <mat-checkbox formControlName="four_hundred" class="box"> 400-500 </mat-checkbox>
+                <mat-checkbox formControlName="five_hundred" class="box"> 500+ </mat-checkbox>
+                <h4 style="margin-left:3%;">
+                    <u>
+                        Concentrations
+                    </u>
+                </h4>
+                <mat-checkbox formControlName="data" class="box"> Data Analaytics </mat-checkbox>
+                <mat-checkbox formControlName="cybersec" class="box"> Cybersecurity </mat-checkbox>
+                <mat-checkbox formControlName="ai_ml" class="box"> AI/ML </mat-checkbox>
+                <mat-checkbox formControlName="swe" class="box"> Software Engineering </mat-checkbox>
+                <h4 style="margin-left:3%;">
+                    <u>
+                        Semesters Offered
+                    </u>
+                </h4>
+                <mat-checkbox formControlName="fall" class="box"> Fall </mat-checkbox>
+                <!-- <mat-checkbox formControlName="winter" class="box"> Winter </mat-checkbox> -->
+                <mat-checkbox formControlName="spring" class="box"> Spring </mat-checkbox>
+                <!-- <mat-checkbox formControlName="summer" class="box"> Summer </mat-checkbox> -->
+
+                
+                
+            </form>
+        </div>
+    </mat-card>
+    <mat-card class="courses-card">
+        <div *ngFor="let course of visibleCourses" class="course-list">
+            <mat-card class="course-card">
+                <div class="card-info">
+                    <mat-card-header>
+                        <mat-card-title>{{ course["Course Name"] }}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p *ngIf="course['Description'] !== null">{{ course['Description'] }}</p>
+                        <p *ngIf="course['Instructors'] !== null">{{ course['Instructors'] }}</p>
+                        <p *ngIf="course['Prerequisites'] !== null">Prerequisites: {{ course['Prerequisites'] }}</p>
+                        <p *ngIf="course['Semesters Offered'] !== null">Semesters Offered: {{ course['Semesters Offered'] }}</p>
+                    </mat-card-content>
+                    <button mat-button class="button" (click)="changeSchedule(course['Course Name'],'add')" *ngIf="!satisfiedCourses.includes(course['Course Name'])">
+                        Add to Schedule
+                    </button>
+                    <button mat-button class="button" (click)="changeSchedule(course['Course Name'],'remove')" *ngIf="satisfiedCourses.includes(course['Course Name'])">
+                        Remove from Schedule
+                    </button>
+                    <button mat-button class="button">
+                        View Info
+                    </button>
+                </div>
+            </mat-card>
+        </div>
+        <div *ngIf="visibleCourses.length==0" class="course-list">
+            <mat-card class="course-card">
+                <div class="card-info">
+                    <mat-card-header>
+                        <mat-card-title>No Courses Found!  </mat-card-title>
+                    </mat-card-header>
+                </div>
+                
+            </mat-card>
+           
+        </div>
+        
+    </mat-card>
+</div>

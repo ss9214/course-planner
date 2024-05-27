@@ -1,0 +1,50 @@
+.course-page {
+    display: flex;
+    justify-content:left;
+}
+
+.filter-card {
+    display: flex;
+    width:15%;
+    flex-direction: column;
+    
+    background-color:#ffaeae
+}
+.box {
+    display:flex;
+}
+.filter-content {
+    margin-top:5%;
+    margin-left:2%;
+    margin-right:2%;
+    align-items:left;
+    display:flex;
+}
+.submit {
+    align-items:center;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+
+}
+.button {
+    background-color:#940a00;
+    color:white;
+    justify-content: center;
+    margin:1%;
+}
+
+.search-bar{
+    margin-top:10%;
+    margin-left:3%;
+    width:85%
+}
+.courses-card {
+    background-color:rgb(221, 215, 202);
+    width:84%;
+
+}
+.course-card {
+    margin:1%;
+    background-color:rgb(243, 237, 224);
+}
