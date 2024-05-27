@@ -13,9 +13,12 @@ Currently, the website only supports schedule building for B.S. Computer Science
 
 # <u></u>
 
-Currently, my tech stack includes:\n 
-Angular, Material, HTML, and CSS for the front-end.\n 
-Flask, Python, and OpenAI for the backend.\n
-MongoDB for the database.\n
+Currently, my tech stack includes:
+
+Angular, Material, HTML, and CSS for the front-end.
+
+Flask, Python, and OpenAI for the backend.
+
+MongoDB for the database.
 
 Thank you for reading!
