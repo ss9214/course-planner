@@ -6,7 +6,7 @@ This website's purpose is to provide a central location that Umass Amherst Under
 
 Currently, the website only supports schedule building for B.S. Computer Science majors, but I plan to add B.S. in Informatics and B.A. in Computer Science as well!
 
-##<u>Planned Features</u>
+## <u>Planned Features</u>
 - Add B.S. in Informatics and B.A. in Computer Science support
 - Add support to create a schedule based on concentrations the user is interested in, i.e Software Engineering, Cybersecurity, etc.
 - Add support for user authentication and login. Students will sign in with their UMass Google Accounts. Users will have information saved in their accounts, such as saved schedules.
