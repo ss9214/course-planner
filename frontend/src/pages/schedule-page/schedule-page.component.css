@@ -27,6 +27,8 @@
 .satisfied_courses {
     padding:2%;
     width:96%;
+    background-color:rgb(212, 205, 188);
+    outline:rgb(165, 157, 137);
 }
 
 .button{

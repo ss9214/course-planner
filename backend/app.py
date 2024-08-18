@@ -1,15 +1,11 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from bson.objectid import ObjectId
-from mongoclient import coursesdb,prereqsdb
-from markupsafe import escape
+from .mongoclient import coursesdb,prereqsdb
 import math
-import json
 import random
 # Allow Cross-Origin Resource Sharing to prevent CORS errors when making requests from the front end
 app = Flask(__name__)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-
 
 @app.route("/api/get/courses")
 def send_courses():
@@ -227,7 +223,29 @@ def create_schedule_algorithm(details):
                     
     return schedule
             
+@app.route("/api/post/verify-schedule",methods=['POST'])
+def verify_schedule():
+    schedule = request.get_json()
+    prereqs_graph = {}
+    courses_dict = {}
+    course_names = []
+    for semester in schedule:
+        for course in semester:
+            course_names.append(course["Course Name"])
+    for course in coursesdb.find({}): # create accessible course database in O(N) time
+        name = course["Course Name"][0:course["Course Name"].find(":")].replace(" ","")
+        del course["Course Name"]
+        del course["_id"]
+        courses_dict[name] = course
+    for course in prereqsdb.find({}): # construct a dictionary with prereqs of each class in O(N) time
+        course_name = course["Course Name"][0:course["Course Name"].find(":")].replace(" ","")
 
+        prereqs = course["Prerequisites"][15:]
+        prereqs_graph[course_name] = {"Prerequisites":prereqs,"Satisfied":False}
+    
+    for semester in schedule:
+        for course in semester:
+            prereqs_graph[course]["Course Name"]["Satisfied"]=True
 
 if __name__ == "__main__":
     app.run(debug=True)

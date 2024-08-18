@@ -1,0 +1,40 @@
+<script src="https://accounts.google.com/gsi/client" async></script>
+<div class="login">
+    <mat-card class="login-card">
+        <div class="login-content">
+            <!-- <h1 class="login-text">Log in</h1>
+            <mat-form-field appearance="outline" class="login-item">
+                <mat-label>Enter your username</mat-label>
+                <input matInput placeholder="student123" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="login-item" style="margin-bottom: -1.25em">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" required>
+                <button mat-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" [disableRipple]="true">
+                    {{hide ? "show" : "hide"}}
+                </button>
+            </mat-form-field>
+            <p class="error-text">{{ error }}</p>
+            <button mat-flat-button (click)="login()" [disabled]="loading" class="login-button">Log in</button> -->
+            
+            <div id="g_id_onload"
+                data-client_id="438786023266-rtoohi603g51ar38e7m5oc01l0b346u5.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="handleOauthResponse"
+                data-itp_support="true">
+            </div>
+        
+            <div class="g_id_signin"
+                data-type="standard"
+                data-shape="rectangular"
+                data-theme="filled_black"
+                data-text="signin_with"
+                data-size="large"
+                data-logo_alignment="left">
+            </div>
+
+        </div>
+        
+    </mat-card>
+</div>

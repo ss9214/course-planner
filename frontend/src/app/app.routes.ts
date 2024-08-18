@@ -4,6 +4,7 @@ import { CoursePageComponent } from '../pages/courses-page/courses-page.componen
 import { SchedulePageComponent } from '../pages/schedule-page/schedule-page.component';
 import { ViewSchedulePageComponent } from '../pages/view-schedule-page/view-schedule-page.component';
 import { ClassInfoPageComponent } from '../pages/class-info-page/class-info-page.component';
+import { LoginPageComponent } from '../pages/login-page/login-page.component';
 
 export const routes: Routes = [
     {
@@ -30,5 +31,10 @@ export const routes: Routes = [
         path: 'class-info',
         title: 'Class Info Page',
         component: ClassInfoPageComponent
+    },
+    {
+        path: 'login',
+        title: 'Login Page',
+        component:LoginPageComponent
     }
 ];

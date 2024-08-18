@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule, MatFormField} from '@angular/material/form-field';
-import { FormControl, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, FormGroup, FormArray } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
@@ -12,11 +12,12 @@ import { DataService } from '../../data.service';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSliderModule} from '@angular/material/slider';
 import { SharedService } from '../../shared.service';
+import {MatSelectModule} from '@angular/material/select';
 
 @Component({
     selector: 'app-schedule-page',
     standalone: true,
-    imports: [MatSliderModule, MatRadioModule,MatIconModule, MatInputModule, CommonModule,MatCardModule,MatButtonModule,MatFormFieldModule, MatFormField,RouterLink,ReactiveFormsModule,MatCheckboxModule],
+    imports: [MatSelectModule,MatSliderModule, MatRadioModule,MatIconModule, MatInputModule, CommonModule,MatCardModule,MatButtonModule,MatFormFieldModule, MatFormField,RouterLink,ReactiveFormsModule,MatCheckboxModule],
     templateUrl: './schedule-page.component.html',
     styleUrl: './schedule-page.component.css'
   })
@@ -37,19 +38,40 @@ import { SharedService } from '../../shared.service';
       datasci: new FormControl(''),
       cybersec: new FormControl(''),
       ai_ml: new FormControl(''),
-      major: new FormControl('')
+      major: new FormControl(''),
+      restrictedSems: new FormArray([]),
     });
-  
+    restrictedCourses:any[]=['false'].constructor(8);
     selectedCourses:any[]=[];
     satisfiedCourses:any[]=[];
-
+    courses:any[]=[];
     constructor(private dataService: DataService, private shared: SharedService) {}
     ngOnInit() {
+      console.log(sessionStorage.getItem("loggedinUser"))
       this.createScheduleForm.patchValue({major:'computer science'})
+      const obs = this.dataService.fetchCourseData()
+      obs.subscribe(data => {
+        this.courses = data.Data;
+      });
+
     }
+    
+    get semesters(): FormArray {
+      const control = this.createScheduleForm.get('semesters');
+      if (control instanceof FormArray) {
+        return control;
+      } else {
+        throw new Error('The control is not a FormArray');
+      }
+    }
+
+    updateSpecificSem(sem_num:number){
+      this.restrictedCourses[sem_num] == 'true' ? this.restrictedCourses[sem_num] = 'false' : this.restrictedCourses[sem_num] = 'true';
+      console.log(this.restrictedCourses[sem_num])
+    }
+
     createSchedule(){
       const formValues = this.createScheduleForm.value;
-      console.log(formValues.semesters_left)
       if (formValues.semesters_left == null || formValues.semesters_left == '' || formValues.semesters_left == undefined){
         this.createScheduleForm.patchValue({semesters_left:'8'})
       }

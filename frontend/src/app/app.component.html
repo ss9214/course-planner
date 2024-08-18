@@ -2,28 +2,36 @@
   <mat-toolbar>
     <mat-toolbar-row class="header" style="background-color:rgb(54, 10, 10); color:rgb(249, 252, 255)">
       Undergraduate CICS Course Planner
+      <div *ngIf="checkUser()" >
+        Welcome, {{getUserName()}}!
+      </div>
     </mat-toolbar-row>
     <mat-toolbar-row class="navbar">
       <div class="menu">
-        <button mat-button routerLink="/" class="navbar-button">
+        <button mat-button (click)="home()" class="navbar-button">
           Home
         </button>
-        <button mat-button routerLink="/view-schedule" class="navbar-button">
+        <button mat-button (click)="view_schedule()" class="navbar-button">
           View Saved Schedules
         </button>
-        <button mat-button routerLink="/schedule" class="navbar-button">
+        <button mat-button (click)="build_schedule()" class="navbar-button">
           Build Schedule
         </button>
-        <button mat-button routerLink="/courses" class="navbar-button">
+        <button mat-button (click)="courses()" class="navbar-button">
           CICS Courses
         </button>
       </div>
       <div class="login-signup">
-        <button mat-button routerLink="/login" class="navbar-button">
+        <button mat-button (click)="login()" class="navbar-button" *ngIf="!checkUser()">
           Log In
         </button>
-        <button mat-button routerLink="/signup" class="navbar-button">
+        <button mat-button (click)="signup()" class="navbar-button" *ngIf="!checkUser()">
           Sign Up 
+        </button>
+
+
+        <button mat-button (click)="logout()" class="navbar-button" *ngIf="checkUser()">
+          Log Out
         </button>
       </div>
     </mat-toolbar-row>

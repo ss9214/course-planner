@@ -26,6 +26,21 @@
                     <input matinput appearance="outline" formControlName="semesters_left" placeholder="8" >
                 </div>
             </div>
+            <div class="row" *ngIf="createScheduleForm.value.semesters_left && +createScheduleForm.value.semesters_left > 0 ">
+                <mat-label class="row">Are there any classes you want in a specific semester?</mat-label>
+                @for (_ of [].constructor(+createScheduleForm.value.semesters_left); track $index) {
+                    <mat-checkbox style="padding-left:3%" (change)="updateSpecificSem($index)">
+                        Semester {{$index + 1}}
+                    </mat-checkbox>
+                    <!-- [formControl]="semesters.at($index).get('selectedCourses')" -->
+                    <mat-select appearance="outline"  multiple class="satisfied_courses" *ngIf="restrictedCourses[$index] == 'true'">
+                        @for (course of courses; track course) {
+                            <mat-option [value]="course">{{course["Course Name"]}}</mat-option>
+                        }
+                    </mat-select>
+                }
+            </div>
+            
             <div class="row">
                 <mat-label style="padding-right:1%">How many gen-eds have you finished?</mat-label>
                 <div class="field" style="padding-left:2%; padding-top:2%">
@@ -90,10 +105,15 @@
                     <input matinput formControlName="min_credits" placeholder="12">
                 </div>
             </div>
-            <mat-form-field appearance="outline" class="satisfied_courses">
-                <mat-label>Enter satisfied CICS, COMPSCI, and INFO courses</mat-label>
-                <textarea rows="5" matInput placeholder="MUST FOLLOW THIS FORMAT AND ABBREVIATIONS: COMPSCI320, INFO348, COMPSCI198C, CICS210" formControlName="satisfied_courses"></textarea> 
-            </mat-form-field>
+            <div class="row">
+                <mat-label style="padding-right:1%">Select satisfied courses:</mat-label>
+                <mat-select appearance="outline" formControlName="satisfied_courses" multiple class="satisfied_courses">
+                    @for (course of courses; track course) {
+                        <mat-option [value]="course">{{course["Course Name"]}}</mat-option>
+                    }
+                </mat-select>
+            </div>
+            
         </form>
         <button mat-button class="button" (click)="createSchedule()" routerLink="/view-schedule" >Create Schedule</button>
         <!-- routerLink="/view-schedule" -->

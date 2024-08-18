@@ -15,17 +15,7 @@ export interface Parameter {
 export class DataService {
   private readonly ROOT_URL = 'http://localhost:5000/api';
   courses: any[] = [];
-  
   constructor(private http: HttpClient) {}
-
-  // get(endpoint: string): Observable<any> {
-  //   return this.http.get(`${this.ROOT_URL}/get${endpoint}`).pipe(
-  //     catchError((error) => {
-  //       console.error('Error making HTTP request', error);
-  //       return error;
-  //     })
-  //   );
-  // }
 
 
 

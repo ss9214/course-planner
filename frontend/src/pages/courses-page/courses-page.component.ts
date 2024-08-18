@@ -47,7 +47,6 @@ import { SharedService } from '../../shared.service';
     curr_course:string ="";
     ngOnInit() {
       const obs = this.dataService.fetchCourseData()
-      
       obs.subscribe(data => {
         this.courses = data.Data;
         this.visibleCourses = this.courses;
