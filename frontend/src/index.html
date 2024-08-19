@@ -14,10 +14,18 @@
       return JSON.parse(atob(token.split(".")[1]))
     }
     function handleOauthResponse(response){
-      const responsePayload = decodeJWTToken(response.credential)
+      const responsePayload = decodeJWTToken(response.credential) 
       console.log(responsePayload)
-      sessionStorage.setItem('loggedinUser',JSON.stringify(responsePayload))
-      window.location.replace('/')
+      const user = JSON.parse(JSON.stringify(responsePayload))
+      const email = user["email"];
+      if (email.substring(user["email"].indexOf("@") + 1, email.length) == "umass.edu") {
+        sessionStorage.setItem('loggedinUser',user)
+        sessionStorage.setItem('invalidEmail',false)
+        window.location.replace('/')
+      } else {
+        sessionStorage.setItem('invalidEmail',true)
+        window.location.reload()
+      }
       
       //Changed the above URL where you want user to be redirected
     }

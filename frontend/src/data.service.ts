@@ -17,16 +17,24 @@ export class DataService {
   courses: any[] = [];
   constructor(private http: HttpClient) {}
 
-
-
   fetchCourseData(): Observable<any> {
-    const obs = this.http.get(`http://localhost:5000/api/get/courses`)
-    return obs
-    // const obs = this.get('/courses');
+    return this.http.get(`http://localhost:5000/api/get/courses`);
 
   }
+
   sendScheduleData(data:any) : Observable<any>{
-    return this.http.post(`http://localhost:5000/api/post/schedule`,data)
+    return this.http.post(`http://localhost:5000/api/post/schedule`,data);
   }
 
+  sendSavedScheduleData(data:any) : Observable<any> {
+    return this.http.post(`http://localhost:5000/api/post/save-schedule`,data);
+  }
+
+  removeSavedScheduleData(data:any) : Observable<any> {
+    return this.http.post(`http://localhost:5000/api/post/remove-schedule`,data);
+  }
+
+  fetchSavedScheduleData() : Observable<any> {
+    return this.http.get(`http://localhost:5000/api/get/saved-schedules`);
+  }
 }

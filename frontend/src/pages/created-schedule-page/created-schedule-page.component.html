@@ -40,7 +40,12 @@
                 </h2>
                 <div *ngFor="let course of semester;" class="course-list">
                     <mat-card class="course">
-                        <input mat-input #courseInput style="width:100px; margin-top:15px;" value="{{course['Course Name']}}">
+                        <input mat-input #courseInput [matAutocomplete]="auto" style="width:100px; margin-top:15px;" value="{{course['Course Name']}}">
+                        <mat-autocomplete requireSelection #auto="matAutocomplete">
+                            @for (course of course_names; track course) {
+                              <mat-option [value]="course">{{course}}</mat-option>
+                            }
+                          </mat-autocomplete>
                         <button mat-button class="view-class-info" (click)="saveCourse(courseInput.value,course)">Save course</button>
                     </mat-card>
                 </div>

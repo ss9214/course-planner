@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from .mongoclient import coursesdb,prereqsdb
+from .mongoclient import coursesdb,prereqsdb,usersdb
 import math
 import random
 # Allow Cross-Origin Resource Sharing to prevent CORS errors when making requests from the front end
@@ -14,6 +14,8 @@ def send_courses():
     for c in courses_cursor:
         del c["_id"]
         courses.append(c)
+
+    courses = sorted(courses, key=lambda course: course["Course Name"])
     return jsonify(
         {
             "Success": True,
@@ -21,13 +23,22 @@ def send_courses():
         }
     )
 
+@app.route("/api/post/save-schedule",methods=['POST'])
+def save_schedule():
+    info = request.get_json()
+    user = usersdb.find_one({'Email':info['Email']})
+    if user:
+        usersdb.find_one_and_update({'Email':info['Email']}, {'$set': {'Schedule': user['Schedule'].append(info['Schedule'])}})
+    else:
+        info['Schedule'] = [info['Schedule']]
+        usersdb.insert_one(info)
+
 @app.route("/api/post/schedule",methods=['POST'])
 def get_schedule():
-    schedule = request.get_json()  # Call get_json as a method
-    created_schedule = create_schedule_algorithm(schedule)
+    schedule_info = request.get_json()  # Call get_json as a method
+    created_schedule = create_schedule_algorithm(schedule_info)
     return jsonify({'Success': True, 'data': created_schedule})
 
-    
 
 def create_schedule_algorithm(details):
     semesters = int(details["semesters_left"])

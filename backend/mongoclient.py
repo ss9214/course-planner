@@ -13,5 +13,5 @@ except Exception as e:
 db = client["Course_Planner"]
 coursesdb = db["Courses"]
 prereqsdb = db["Prerequisites"]
-
+usersdb = db["Users"]
 

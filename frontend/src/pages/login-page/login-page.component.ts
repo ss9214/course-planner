@@ -30,7 +30,8 @@ export class LoginPageComponent {
 
   constructor(private dataService: DataService, private router: Router) {}
 
-  login(){
-    
+  invalid_email(){
+    console.log(sessionStorage.getItem("invalidEmail"));
+    return sessionStorage.getItem("invalidEmail");
   }
 }

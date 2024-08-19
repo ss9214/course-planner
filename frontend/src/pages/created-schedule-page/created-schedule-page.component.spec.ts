@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewSchedulePageComponent } from './view-schedule-page.component';
+import { ViewSchedulePageComponent } from './created-schedule-page.component';
 
 describe('ViewSchedulePageComponent', () => {
   let component: ViewSchedulePageComponent;

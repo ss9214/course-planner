@@ -16,17 +16,14 @@ import { DataService } from '../data.service';
 export class AppComponent {
   title = 'frontend';
   constructor(public dataService: DataService) {}
-
+  
   logout(){
+    console.log(sessionStorage.getItem('loggedinUser'))
     sessionStorage.removeItem('loggedinUser');
   }
   getUserName(){
     let user:any = sessionStorage.getItem('loggedinUser');
-    user = JSON.parse(user);
     if (user){
-      console.log(user)
-      console.log(user.name)
-      console.log(Object.keys(user),Object.values(user))
       return user['name'];
     }
     return user
@@ -47,16 +44,17 @@ export class AppComponent {
   }
   
   build_schedule(){
-    window.location.replace('/schedule')
+    window.location.replace('/create-schedule')
   }
 
   view_schedule(){
-    window.location.replace('/view-schedule')
+    window.location.replace('/created-schedule')
   }
 
+  view_saved_schedules() {
+    window.location.replace('/saved-schedules')
+  }
   home(){
-    
     window.location.replace('/')
-    console.log(sessionStorage.getItem("loggedinUser"))
   }
 }

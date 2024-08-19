@@ -15,11 +15,11 @@ import { SharedService } from '../../shared.service';
 import {MatSelectModule} from '@angular/material/select';
 
 @Component({
-    selector: 'app-schedule-page',
+    selector: 'app-create-new-schedule-page',
     standalone: true,
     imports: [MatSelectModule,MatSliderModule, MatRadioModule,MatIconModule, MatInputModule, CommonModule,MatCardModule,MatButtonModule,MatFormFieldModule, MatFormField,RouterLink,ReactiveFormsModule,MatCheckboxModule],
-    templateUrl: './schedule-page.component.html',
-    styleUrl: './schedule-page.component.css'
+    templateUrl: './create-new-schedule-page.component.html',
+    styleUrl: './create-new-schedule-page.component.css'
   })
 
   export class SchedulePageComponent implements OnInit {
@@ -53,7 +53,6 @@ import {MatSelectModule} from '@angular/material/select';
       obs.subscribe(data => {
         this.courses = data.Data;
       });
-
     }
     
     get semesters(): FormArray {
@@ -108,5 +107,6 @@ import {MatSelectModule} from '@angular/material/select';
         this.shared.updateSchedule(response)
         console.log('Data sent successfully', response);
       });
+      window.location.replace('/created-schedule')
     }
   }

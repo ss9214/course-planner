@@ -1,22 +1,11 @@
 <script src="https://accounts.google.com/gsi/client" async></script>
 <div class="login">
-    <mat-card class="login-card">
-        <div class="login-content">
-            <!-- <h1 class="login-text">Log in</h1>
-            <mat-form-field appearance="outline" class="login-item">
-                <mat-label>Enter your username</mat-label>
-                <input matInput placeholder="student123" required>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="login-item" style="margin-bottom: -1.25em">
-                <mat-label>Enter your password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" required>
-                <button mat-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" [disableRipple]="true">
-                    {{hide ? "show" : "hide"}}
-                </button>
-            </mat-form-field>
-            <p class="error-text">{{ error }}</p>
-            <button mat-flat-button (click)="login()" [disabled]="loading" class="login-button">Log in</button> -->
-            
+    
+    <mat-card class="login-card" >
+        <div style="margin-top:10%;font-size:28px">
+            Log in with your UMass Email!
+        </div>
+        <div class="login-content" style="align-self:center;align-items: center; margin-top:10%">
             <div id="g_id_onload"
                 data-client_id="438786023266-rtoohi603g51ar38e7m5oc01l0b346u5.apps.googleusercontent.com"
                 data-context="signin"
@@ -35,6 +24,8 @@
             </div>
 
         </div>
-        
+        <div *ngIf="invalid_email() == 'true'" style="color:rgb(218, 45, 45)">
+            Invalid Email! Please sign in with your UMass email.
+        </div>
     </mat-card>
 </div>
