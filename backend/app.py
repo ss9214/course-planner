@@ -23,15 +23,52 @@ def send_courses():
         }
     )
 
+@app.route("/api/post/remove-schedule",methods=['POST'])
+def remove_schedule():
+    info = request.get_json()
+    user = usersdb.find_one({'Email':info['Email']})
+    if user:
+        schedules = user['Schedule']
+        print(info['Schedule'] in schedules)
+        if info['Schedule'] in schedules: schedules.remove(info['Schedule'])
+        usersdb.find_one_and_update({'Email':info['Email']}, {'$set': {'Schedule': schedules}})
+        return jsonify({"Success":True,"data":schedules})
+    return jsonify({"Success":False,"data":None})
+
 @app.route("/api/post/save-schedule",methods=['POST'])
 def save_schedule():
     info = request.get_json()
     user = usersdb.find_one({'Email':info['Email']})
     if user:
-        usersdb.find_one_and_update({'Email':info['Email']}, {'$set': {'Schedule': user['Schedule'].append(info['Schedule'])}})
+        print("user")
+        schedule = user['Schedule']
+        if schedule:
+            schedule.append(info['Schedule'])
+            print("schedule")
+            usersdb.find_one_and_update({'Email':info['Email']}, {'$set': {'Schedule': schedule}})
+        else:
+            print("no schedule")
+            usersdb.find_one_and_update({'Email':info['Email']}, {'$set': {'Schedule': [info['Schedule']]}})
+        user = usersdb.find_one({'Email':info['Email']})
+        return jsonify({"Success":True,"data":user['Schedule']})
     else:
-        info['Schedule'] = [info['Schedule']]
-        usersdb.insert_one(info)
+        print("no user")
+        schedules = [info['Schedule']]
+        usersdb.insert_one({'Email':info['Email'],'Schedule':schedules})
+        return jsonify({"Success":True,"data":schedules})
+    
+    
+@app.route("/api/post/saved-schedules",methods=['POST'])
+def get_saved_schedules():
+    print("test")
+    info = request.get_json()
+    user = usersdb.find_one({'Email':info['Email']})
+    if user:
+        schedules = user['Schedule']
+        print(type(schedules))
+        if schedules:
+            return jsonify({'Success':True, 'data':schedules})
+    return jsonify({'Success':False,'data':None})
 
 @app.route("/api/post/schedule",methods=['POST'])
 def get_schedule():

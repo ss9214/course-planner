@@ -23,24 +23,33 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
   })
 
   export class ViewSchedulePageComponent implements OnInit {
-    schedule = {}
+    schedule:any = {}
     list_schedule:any[] = []
     saved:boolean=false
     editSched:boolean=false
     courses:any[]=[]
     course_names:any[]=[]
+    schedule_name:string = ""
     constructor(private dataService: DataService, private shared: SharedService) {}
     ngOnInit() {
-      new Promise(resolve => setTimeout(resolve, 700)).then(()=>{
-        this.shared.createdSchedule.subscribe(sched => {this.schedule = sched})
-        Object.values(this.schedule).forEach(value=> {this.list_schedule.push(value)})
+      new Promise(resolve => setTimeout(resolve, 1000)).then(()=>{
+        // this.shared.createdSchedule.subscribe(sched => {this.schedule = sched; console.log(sched)})
+        const schedule = sessionStorage.getItem("schedule");
+        if (schedule){
+          this.schedule = JSON.parse(schedule)
+        }
+        this.schedule_name = this.schedule["Schedule Name"]
+        Object.values(this.schedule["Schedule"]).forEach(value=> {this.list_schedule.push(value)})
+        this.dataService.fetchSavedScheduleData().subscribe(saved_schedules => {
+          saved_schedules = saved_schedules["data"]
+          this.saved = saved_schedules.some((sched: any) => JSON.stringify(sched) == JSON.stringify(this.schedule));
+          console.log(this.saved)
+        })
       })
       const obs = this.dataService.fetchCourseData()
       obs.subscribe(data => {
         this.courses = data.Data;
         this.course_names = this.courses.map(course=>(course["Course Name"].substring(0,course["Course Name"].indexOf(":"))))
-        console.log(this.courses)
-        console.log(this.course_names)
       });
     }
     addSaved(schedule:any){
@@ -52,7 +61,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     }
     removeSaved(schedule:any){
       // this.shared.updateSavedSchedules(schedule,"remove")
-      this.dataService.removeSavedScheduleData(schedule).subscribe(response=> {
+      this.dataService.removeSavedScheduleData({"Schedule Name": "Favorite Schedule", "Schedule": schedule}).subscribe(response=> {
         console.log('Schedule Removed', response)
       })
       this.saved=false

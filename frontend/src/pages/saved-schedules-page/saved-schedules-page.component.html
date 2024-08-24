@@ -1,1 +1,15 @@
-<h1 style="margin-left:20px;"> Welcome to my Undergraduate CICS Course Planner! </h1>
+
+<div>
+    <mat-card class="saved_schedules_card">
+        @for (schedule of saved_schedules; track schedule) {
+            <mat-card class="saved_schedule">
+                <mat-card-header>
+                    <mat-card-title>{{ schedule["Schedule Name"] }}</mat-card-title>
+                    <button mat-button (click)="makeSchedule(schedule)">
+                        View Schedule
+                    </button>
+                </mat-card-header>
+            </mat-card>
+        }
+    </mat-card>
+</div>

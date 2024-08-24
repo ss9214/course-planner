@@ -20,8 +20,10 @@ export class SharedService{
       this.satisfiedCoursesSource.next(courses)
     }
     updateSchedule(schedule:any){
-      this.createdScheduleSource.next(schedule["data"])
-      this.createdSchedule.subscribe(x=>{console.log(x);console.log("hi")})
+      this.createdScheduleSource.next(schedule)
+      console.log(JSON.stringify(schedule))
+      sessionStorage.setItem("schedule",JSON.stringify(schedule))
+      window.location.replace("/created-schedule")
     }
     // updateSavedSchedules(schedule:any,change:any){
     //   const array = this.savedSchedulesSource.getValue()

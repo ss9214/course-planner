@@ -27,14 +27,23 @@ export class DataService {
   }
 
   sendSavedScheduleData(data:any) : Observable<any> {
-    return this.http.post(`http://localhost:5000/api/post/save-schedule`,data);
+    let user:any = sessionStorage.getItem("loggedinUser")
+    let email:any=null;
+    if (user) {user = JSON.parse(user); email = user["email"]}
+    return this.http.post(`http://localhost:5000/api/post/save-schedule`,{"Email":email, "Schedule":data});
   }
 
   removeSavedScheduleData(data:any) : Observable<any> {
-    return this.http.post(`http://localhost:5000/api/post/remove-schedule`,data);
+    let user:any = sessionStorage.getItem("loggedinUser")
+    let email:any=null;
+    if (user) {user = JSON.parse(user); email = user["email"]}
+    return this.http.post(`http://localhost:5000/api/post/remove-schedule`,{"Email":email, "Schedule":data});
   }
 
   fetchSavedScheduleData() : Observable<any> {
-    return this.http.get(`http://localhost:5000/api/get/saved-schedules`);
+    let user:any = sessionStorage.getItem("loggedinUser")
+    let email:any=null;
+    if (user) {user = JSON.parse(user); email = user["email"]}
+    return this.http.post(`http://localhost:5000/api/post/saved-schedules`,{"Email":email});
   }
 }

@@ -15,7 +15,8 @@
         <button mat-button (click)="view_saved_schedules()" class="navbar-button">
           Saved Schedules
         </button>
-        <button mat-button (click)="view_schedule()" class="navbar-button">
+        <!-- (click)="view_schedule()" -->
+        <button mat-button routerLink="/created-schedule" class="navbar-button">
           View Created Schedule
         </button>
         <button mat-button (click)="build_schedule()" class="navbar-button">

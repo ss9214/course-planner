@@ -19,7 +19,7 @@
       const user = JSON.parse(JSON.stringify(responsePayload))
       const email = user["email"];
       if (email.substring(user["email"].indexOf("@") + 1, email.length) == "umass.edu") {
-        sessionStorage.setItem('loggedinUser',user)
+        sessionStorage.setItem('loggedinUser',JSON.stringify(responsePayload))
         sessionStorage.setItem('invalidEmail',false)
         window.location.replace('/')
       } else {

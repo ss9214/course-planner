@@ -47,7 +47,6 @@ import {MatSelectModule} from '@angular/material/select';
     courses:any[]=[];
     constructor(private dataService: DataService, private shared: SharedService) {}
     ngOnInit() {
-      console.log(sessionStorage.getItem("loggedinUser"))
       this.createScheduleForm.patchValue({major:'computer science'})
       const obs = this.dataService.fetchCourseData()
       obs.subscribe(data => {
@@ -66,7 +65,6 @@ import {MatSelectModule} from '@angular/material/select';
 
     updateSpecificSem(sem_num:number){
       this.restrictedCourses[sem_num] == 'true' ? this.restrictedCourses[sem_num] = 'false' : this.restrictedCourses[sem_num] = 'true';
-      console.log(this.restrictedCourses[sem_num])
     }
 
     createSchedule(){
@@ -104,9 +102,9 @@ import {MatSelectModule} from '@angular/material/select';
       }
 
       this.dataService.sendScheduleData(this.createScheduleForm.value).subscribe(response => {
-        this.shared.updateSchedule(response)
+        this.shared.updateSchedule(response["data"]);
         console.log('Data sent successfully', response);
       });
-      window.location.replace('/created-schedule')
+      //window.location.replace('/created-schedule')
     }
   }

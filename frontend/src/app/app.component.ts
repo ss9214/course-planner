@@ -18,18 +18,15 @@ export class AppComponent {
   constructor(public dataService: DataService) {}
   
   logout(){
-    console.log(sessionStorage.getItem('loggedinUser'))
     sessionStorage.removeItem('loggedinUser');
   }
   getUserName(){
     let user:any = sessionStorage.getItem('loggedinUser');
-    if (user){
-      return user['name'];
-    }
-    return user
+    return user ? JSON.parse(user)["name"] : user
   }
   checkUser(){
-    return sessionStorage.getItem('loggedinUser')
+    const user = sessionStorage.getItem('loggedinUser')
+    return user ? JSON.parse(user) : user
   }
   login(){
     window.location.replace('/login') 

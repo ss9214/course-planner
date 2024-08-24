@@ -12,6 +12,9 @@
         <button mat-button class="view-class-info" (click)="editSched=false" *ngIf="editSched" style="background-color:rgb(221, 215, 202)">
             Stop Editing Schedule
         </button>
+        <h1>
+            {{schedule_name}}
+        </h1>
     </div>
     <div class="schedule-page" *ngIf="list_schedule.length>0 && !editSched">
         <div *ngFor="let semester of list_schedule" class="semesters-list">

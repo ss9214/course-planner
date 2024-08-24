@@ -23,10 +23,6 @@ import {MatSelectModule} from '@angular/material/select';
 })
 export class LoginPageComponent {
   hide = true;
-  username = '';
-  password = '';
-  error = '';
-  loading = false;
 
   constructor(private dataService: DataService, private router: Router) {}
 

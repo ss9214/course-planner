@@ -61,7 +61,6 @@ import { SharedService } from '../../shared.service';
         this.satisfiedCourses = this.satisfiedCourses.replace(course + ", ", "")
       }
       
-      console.log(this.satisfiedCourses);
       this.shared.changeSatisfiedCourses(this.satisfiedCourses);
     }
 
