@@ -19,7 +19,7 @@
       if (email.substring(user["email"].indexOf("@") + 1, email.length) == "umass.edu") {
         sessionStorage.setItem('loggedinUser',JSON.stringify(responsePayload))
         sessionStorage.setItem('invalidEmail',false)
-        window.location.replace('/course-planner/')
+        window.location.href = '/course-planner/'
       } else {
         sessionStorage.setItem('invalidEmail',true)
         window.location.reload()
